@@ -1,0 +1,22 @@
+{
+    "preset": [
+        "presetter-preset-essentials",
+        "presetter-preset-hybrid"
+    ],
+    "config": {
+        "tsconfig": {
+            "compilerOptions": {
+                "lib": [
+                    "ES2020",
+                    "dom"
+                ]
+            }
+        },
+        "prettier": {
+            "singleQuote": false
+        }
+    },
+    "variable": {
+        "source": "src"
+    }
+}
