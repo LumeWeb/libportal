@@ -9,13 +9,7 @@
                     "npm-shrinkwrap.json"
                 ]
             }
-        ],
-        [
-            "@semantic-release/npm",
-            {
-                "pkgRoot": "lib"
-            }
-        ],
+        ]
     ],
     "branches": [
         "master",
