@@ -15,7 +15,7 @@
                 "docs/CHANGELOG.md",
                 "npm-shrinkwrap.json"
             ]
-        }
+        },
         "@semantic-release/npm"
     ],
     "branches": [
