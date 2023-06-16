@@ -5,10 +5,17 @@
             {
                 "assets": [
                     "package.json",
-                    "docs/CHANGELOG.md"
+                    "docs/CHANGELOG.md",
+                    "npm-shrinkwrap.json"
                 ]
             }
-        ]
+        ],
+        [
+            "@semantic-release/npm",
+            {
+                "pkgRoot": "lib"
+            }
+        ],
     ],
     "branches": [
         "master",
