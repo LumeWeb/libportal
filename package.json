@@ -6,7 +6,7 @@
   "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "gitea@git.lumeweb.com:LumeWeb/relay.git"
+    "url": "gitea@git.lumeweb.com:LumeWeb/libportal.git"
   },
   "exports": {
     ".": {
