@@ -31,7 +31,7 @@
     "scripts": {
         "prepare": "presetter bootstrap",
         "build": "presetter run build",
-        "semantic-release": "semantic-release"
+        "semantic-release": "semantic-release --dry-run --debug"
     },
     "dependencies": {
         "@noble/curves": "^1.1.0",
