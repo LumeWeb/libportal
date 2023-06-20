@@ -11,7 +11,7 @@ workflows:
                     npm-run: build
                     setup:
                         - persist_to_workspace:
-                              path: ./
+                              root: .
                               paths:
                                   - lib/
 
