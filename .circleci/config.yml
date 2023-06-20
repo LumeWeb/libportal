@@ -17,7 +17,7 @@ workflows:
                                 - /^develop-.*$/
             -   node/run:
                     name: release
-                    npm-run: semantic-release
+                    npm-run: semantic-release --dry-run --debug
                     requires:
                         - build
                     filters:
