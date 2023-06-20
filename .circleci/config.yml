@@ -9,11 +9,11 @@ workflows:
             -   node/run:
                     name: build
                     npm-run: build
-                    setup:
-                        - persist_to_workspace:
-                              root: .
-                              paths:
-                                  - lib/
+                    post-steps:
+                        -   persist_to_workspace:
+                                root: .
+                                paths:
+                                    - lib/
 
                     filters:
                         branches:
@@ -35,11 +35,12 @@ workflows:
 
                     context:
                         - publish
+                    pre-steps:
+                        -   attach_workspace:
+                                at: ./
                     setup:
                         -   add_ssh_keys:
                                 fingerprints:
                                     - "47:cf:a1:17:d9:81:8e:c5:51:e5:53:c8:33:e4:33:b9"
                         -   ssh/ssh-add-host:
                                 host_url: GITEA_HOST
-                        - attach_workspace:
-                              at: ./
