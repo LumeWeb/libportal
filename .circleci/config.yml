@@ -9,6 +9,12 @@ workflows:
             -   node/run:
                     name: build
                     npm-run: build
+                    post-steps:
+                        -   persist_to_workspace:
+                                root: .
+                                paths:
+                                    - lib/
+
                     filters:
                         branches:
                             only:
@@ -30,6 +36,8 @@ workflows:
                     context:
                         - publish
                     setup:
+                        -  attach_workspace:
+                            at: ./
                         -   add_ssh_keys:
                                 fingerprints:
                                     - "47:cf:a1:17:d9:81:8e:c5:51:e5:53:c8:33:e4:33:b9"
