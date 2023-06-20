@@ -35,10 +35,9 @@ workflows:
 
                     context:
                         - publish
-                    pre-steps:
-                        -   attach_workspace:
-                                at: ./
                     setup:
+                        -  attach_workspace:
+                            at: ./
                         -   add_ssh_keys:
                                 fingerprints:
                                     - "47:cf:a1:17:d9:81:8e:c5:51:e5:53:c8:33:e4:33:b9"
