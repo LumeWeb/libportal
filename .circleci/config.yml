@@ -8,7 +8,7 @@ workflows:
         jobs:
             -   node/run:
                     name: build
-                    npm-run: pbuild
+                    npm-run: build
                     post-steps:
                         -   persist_to_workspace:
                                 root: .
