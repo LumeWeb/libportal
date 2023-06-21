@@ -39,6 +39,7 @@ export interface ClientOptions {
   email?: string;
   password?: string;
   privateKey?: Uint8Array;
+  jwt?: string;
 }
 
 interface FetchOptions {
@@ -60,6 +61,10 @@ export class Client {
     }
     if (!options.portalUrl) {
       throw new Error("Portal url is required");
+    }
+
+    if (options.jwt) {
+      this.jwtSessionKey = options.jwt;
     }
 
     this._options = options;
