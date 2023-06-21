@@ -30,7 +30,7 @@
     "_id": "@lumeweb/libportal@0.1.0",
     "scripts": {
         "prepare": "presetter bootstrap",
-        "pbuild": "presetter run build",
+        "build": "presetter run build",
         "semantic-release": "semantic-release"
     },
     "dependencies": {
