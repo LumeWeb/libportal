@@ -1,6 +1,6 @@
 {
     "name": "@lumeweb/libportal",
-    "version": "0.1.0",
+    "version": "0.2.0-develop.1",
     "main": "lib/index.js",
     "module": "lib/index.mjs",
     "types": "lib/index.d.ts",
@@ -27,7 +27,6 @@
         "semantic-release": "^21.0.5"
     },
     "readme": "ERROR: No README data found!",
-    "_id": "@lumeweb/libportal@0.1.0",
     "scripts": {
         "prepare": "presetter bootstrap",
         "build": "presetter run build",
