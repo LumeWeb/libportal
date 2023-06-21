@@ -8,6 +8,7 @@
                 "changelogFile": "docs/CHANGELOG.md"
             }
         ],
+        "@semantic-release/npm",
         "@semantic-release/git",
         {
             "assets": [
@@ -15,8 +16,7 @@
                 "docs/CHANGELOG.md",
                 "npm-shrinkwrap.json"
             ]
-        },
-        "@semantic-release/npm"
+        }
     ],
     "branches": [
         "master",
