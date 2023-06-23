@@ -22,7 +22,7 @@ workflows:
                                     gvm use go1.8 --default;
                                     VERSION=0.28.1;
                                     TINYGO="tinygo_${VERSION}_amd64.deb"
-                                    wget https://github.com/tinygo-org/tinygo/releases/download/$VERSION/$TINYGO;
+                                    wget https://github.com/tinygo-org/tinygo/releases/download/v$VERSION/$TINYGO;
                                     sudo dpkg -i $TINYGO && rm $TINYGO;
                                     cd src/golang;
                                     go get;
