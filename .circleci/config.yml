@@ -27,6 +27,7 @@ workflows:
                                     sudo dpkg -i $TINYGO && rm $TINYGO;
                     setup:
                         - run:
+                              name: Fetch Wasm Deps
                               command: >
                                   cd src/golang;
                                   go get;
