@@ -20,7 +20,6 @@ workflows:
                                     gvm install go1.4 -B;
                                     gvm use go1.4 --default;
                                     gvm install go1.8 -B;
-                                    gvm use go1.8 --default;
                                     VERSION=0.28.1;
                                     TINYGO="tinygo_${VERSION}_amd64.deb";
                                     wget https://github.com/tinygo-org/tinygo/releases/download/v$VERSION/$TINYGO;
@@ -29,6 +28,8 @@ workflows:
                         - run:
                               name: Fetch Wasm Deps
                               command: >
+                                  source ~/.gvm/scripts/gvm;
+                                  gvm use go1.8 --default;
                                   cd src/golang;
                                   go get;
 
