@@ -21,7 +21,7 @@ import {
   UploadStatusResponse,
 } from "./responses/files.js";
 
-import TUS from "tus-js-client";
+import * as TUS from "tus-js-client";
 import streamToBlob from "stream-to-blob";
 
 import defer from "p-defer";
