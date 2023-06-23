@@ -10,9 +10,9 @@ workflows:
                     name: build
                     npm-run: build
                     pre-steps:
-                        -   run:
+                        -   name: Setup Golang
+                            run:
                                 command: >
-                                    set -x;
                                     sudo apt-get update;
                                     sudo apt-get install bison;
                                     bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer);
@@ -25,8 +25,13 @@ workflows:
                                     TINYGO="tinygo_${VERSION}_amd64.deb";
                                     wget https://github.com/tinygo-org/tinygo/releases/download/v$VERSION/$TINYGO;
                                     sudo dpkg -i $TINYGO && rm $TINYGO;
-                                    cd src/golang;
-                                    go get;
+                    setup:
+                        - name: Fetch Wasm Deps
+                          run:
+                              command: >
+                                  cd src/golang;
+                                  go get;
+
 
                     post-steps:
                         -   persist_to_workspace:
