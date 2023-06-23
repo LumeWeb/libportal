@@ -10,8 +10,8 @@ workflows:
                     name: build
                     npm-run: build
                     pre-steps:
-                        -   name: Setup Golang
-                            run:
+                        -   run:
+                                name: Setup Golang
                                 command: >
                                     sudo apt-get update;
                                     sudo apt-get install bison;
