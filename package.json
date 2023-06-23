@@ -30,6 +30,7 @@
     "scripts": {
         "prepare": "presetter bootstrap",
         "build": "presetter run build",
+        "build:wasm": "mkdir ./lib/wasm && tinygo build -o ./lib/wasm/bao.wasm -target wasm ./src/golang/main.go",
         "semantic-release": "semantic-release"
     },
     "dependencies": {
