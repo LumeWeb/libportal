@@ -2,13 +2,7 @@ import { ed25519 as ed } from "@noble/curves/ed25519";
 import * as edUtils from "@noble/curves/abstract/utils";
 
 import { RegisterRequest } from "./requests/account.js";
-import fetch, {
-  FormData,
-  Blob,
-  RequestInit,
-  Response,
-  HeadersInit,
-} from "node-fetch";
+import fetch, { Response } from "cross-fetch";
 import {
   LoginRequest,
   LogoutRequest,
@@ -27,12 +21,14 @@ import streamToBlob from "stream-to-blob";
 import defer from "p-defer";
 import { blake3 } from "@noble/hashes/blake3";
 import { encodeCid } from "./cid.js";
-import { Readable as NodeReadableStream } from "stream";
 import {
   AuthStatusResponse,
   LoginResponse,
   PubkeyChallengeResponse,
 } from "./responses/auth.js";
+import isNode from "detect-node";
+
+type NodeReadableStreamType = typeof import("stream").Readable;
 
 export interface ClientOptions {
   portalUrl: string;
@@ -211,7 +207,9 @@ export class Client {
     if (options.data) {
       fetchOptions.body = options.data;
 
-      if (!(fetchOptions.body instanceof FormData)) {
+      const _FormData = await this.getFormDataObject();
+
+      if (!(fetchOptions.body instanceof _FormData)) {
         fetchOptions.headers["Content-Type"] = "application/json";
         fetchOptions.body = JSON.stringify(fetchOptions.body);
       }
@@ -312,7 +310,10 @@ export class Client {
       stream = await streamToBlob(stream);
     }
 
-    if (stream instanceof NodeReadableStream) {
+    let NodeReadableStream =
+      (await this.getNodeReadableObject()) as NodeReadableStreamType;
+
+    if (NodeReadableStream && stream instanceof NodeReadableStream) {
       let data = new Uint8Array();
       for await (const chunk of stream) {
         data = Uint8Array.from([...data, ...chunk]);
@@ -325,11 +326,16 @@ export class Client {
       stream = new Blob([Buffer.from(stream)]);
     }
 
-    if (!(stream instanceof Blob) && !(stream instanceof NodeReadableStream)) {
+    if (
+      !(stream instanceof Blob) &&
+      !(NodeReadableStream && stream instanceof NodeReadableStream)
+    ) {
       throw new Error("Invalid stream");
     }
 
-    const formData = new FormData();
+    const _FormData = await this.getFormDataObject();
+
+    const formData = new _FormData();
     formData.set("file", stream as Blob);
 
     const response = await this.post<UploadResponse>(
@@ -373,7 +379,10 @@ export class Client {
       hash = await this.computeHash(hashStream);
     }
 
-    if (stream instanceof NodeReadableStream) {
+    let NodeReadableStream =
+      (await this.getNodeReadableObject()) as NodeReadableStreamType;
+
+    if (NodeReadableStream && stream instanceof NodeReadableStream) {
       hash = await this.computeHash(hashStream);
     }
 
@@ -386,7 +395,7 @@ export class Client {
     if (
       !(stream instanceof ReadableStreamDefaultReader) &&
       !(stream instanceof Blob) &&
-      !(stream instanceof NodeReadableStream)
+      !(NodeReadableStream && stream instanceof NodeReadableStream)
     ) {
       throw new Error("Invalid stream");
     }
@@ -476,7 +485,10 @@ export class Client {
       return edUtils.bytesToHex(hasher.digest());
     }
 
-    if (stream instanceof NodeReadableStream) {
+    let NodeReadableStream =
+      (await this.getNodeReadableObject()) as NodeReadableStreamType;
+
+    if (NodeReadableStream && stream instanceof NodeReadableStream) {
       const hasher = blake3.create({});
 
       for await (const chunk of stream) {
@@ -493,5 +505,21 @@ export class Client {
     }
 
     throw new Error("Invalid stream");
+  }
+
+  private async getFormDataObject() {
+    if (isNode) {
+      return (await import("node-fetch")).FormData;
+    }
+
+    return FormData;
+  }
+
+  private async getNodeReadableObject() {
+    if (isNode) {
+      return (await import("stream")).Readable;
+    }
+
+    return undefined;
   }
 }
