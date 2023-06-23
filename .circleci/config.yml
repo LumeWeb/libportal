@@ -12,18 +12,18 @@ workflows:
                     pre-steps:
                         -   run:
                                 command: >
-                                    bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
-                                    source ~/.gvm/scripts/gvm
-                                    gvm install go1.4
-                                    gvm use go1.4 --default
-                                    gvm install go1.4
-                                    gvm use go1.8 --default
-                                    VERSION=0.28.1
+                                    bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer);
+                                    source ~/.gvm/scripts/gvm;
+                                    gvm install go1.4;
+                                    gvm use go1.4 --default;
+                                    gvm install go1.4;
+                                    gvm use go1.8 --default;
+                                    VERSION=0.28.1;
                                     TINYGO="tinygo_${VERSION}_amd64.deb"
-                                    wget https://github.com/tinygo-org/tinygo/releases/download/$VERSION/$TINYGO
-                                    sudo dpkg -i $TINYGO && rm $TINYGO
-                                    cd src/golang
-                                    go get
+                                    wget https://github.com/tinygo-org/tinygo/releases/download/$VERSION/$TINYGO;
+                                    sudo dpkg -i $TINYGO && rm $TINYGO;
+                                    cd src/golang;
+                                    go get;
 
                     post-steps:
                         -   persist_to_workspace:
