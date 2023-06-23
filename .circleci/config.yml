@@ -26,8 +26,7 @@ workflows:
                                     wget https://github.com/tinygo-org/tinygo/releases/download/v$VERSION/$TINYGO;
                                     sudo dpkg -i $TINYGO && rm $TINYGO;
                     setup:
-                        - name: Fetch Wasm Deps
-                          run:
+                        - run:
                               command: >
                                   cd src/golang;
                                   go get;
