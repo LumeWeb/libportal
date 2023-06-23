@@ -12,6 +12,7 @@ workflows:
                     pre-steps:
                         -   run:
                                 command: >
+                                    set -x
                                     sudo apt-get update;
                                     sudo apt-get install bison;
                                     bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer);
