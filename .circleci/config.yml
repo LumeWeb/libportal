@@ -18,7 +18,7 @@ workflows:
                                     source ~/.gvm/scripts/gvm;
                                     gvm install go1.4 -B;
                                     gvm use go1.4 --default;
-                                    gvm install go1.4 -B;
+                                    gvm install go1.8 -B;
                                     gvm use go1.8 --default;
                                     VERSION=0.28.1;
                                     TINYGO="tinygo_${VERSION}_amd64.deb"
