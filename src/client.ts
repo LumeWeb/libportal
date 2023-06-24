@@ -212,6 +212,17 @@ export class Client {
       if (!(fetchOptions.body instanceof _FormData)) {
         fetchOptions.headers["Content-Type"] = "application/json";
         fetchOptions.body = JSON.stringify(fetchOptions.body);
+      } else {
+        if (isNode) {
+          const formDataToBlob = (
+            await import("formdata-polyfill/formdata-to-blob.js")
+          ).formDataToBlob;
+          const Blob = (await import("node-fetch")).Blob;
+          const blob = formDataToBlob(fetchOptions.body, Blob);
+          // @ts-ignore
+          fetchOptions.body = Buffer.from(await blob.arrayBuffer());
+          fetchOptions.headers["Content-Type"] = blob.type;
+        }
       }
     }
 
@@ -281,6 +292,8 @@ export class Client {
     hashStream?: any,
     size?: bigint,
   ): Promise<string> {
+    const Blob = await this.getBlobObject();
+
     if (stream instanceof Uint8Array || stream instanceof Blob) {
       size = BigInt(stream.length);
     }
@@ -306,6 +319,8 @@ export class Client {
   private async uploadFileSmall(stream: Uint8Array): Promise<string>;
   private async uploadFileSmall(stream: NodeJS.ReadableStream): Promise<string>;
   private async uploadFileSmall(stream: any): Promise<string> {
+    const Blob = await this.getBlobObject();
+
     if (stream instanceof ReadableStream) {
       stream = await streamToBlob(stream);
     }
@@ -513,6 +528,13 @@ export class Client {
     }
 
     return FormData;
+  }
+  private async getBlobObject() {
+    if (isNode) {
+      return (await import("node-fetch")).Blob;
+    }
+
+    return Blob;
   }
 
   private async getNodeReadableObject() {

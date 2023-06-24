@@ -39,6 +39,7 @@
         "cross-fetch": "^3.1.6",
         "detect-node": "^2.1.0",
         "multiformats": "^11.0.2",
+        "node-fetch": "^3.3.1",
         "p-defer": "^4.0.0",
         "stream-to-blob": "^2.0.1",
         "tus-js-client": "^3.1.0",
