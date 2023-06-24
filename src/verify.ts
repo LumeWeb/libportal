@@ -74,9 +74,9 @@ export async function getVerifiableStream(
 
       const result = getWasmProperty(wasmId, "result");
 
-      const wasmDone = result === undefined;
+      const wasmDone = result !== undefined;
 
-      if (result === undefined) {
+      if (!wasmDone) {
         await getNextBytes();
       }
 
