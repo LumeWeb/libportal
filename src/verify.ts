@@ -12,6 +12,13 @@ export async function getVerifiableStream(
   const reader = new VariableChunkStream(data);
   let bytesToRead;
 
+  if (root instanceof ArrayBuffer) {
+    root = new Uint8Array(root);
+  }
+  if (proof instanceof ArrayBuffer) {
+    proof = new Uint8Array(proof);
+  }
+
   const getNextBytes = async () => {
     bytesToRead = getWasmProperty(wasmId, "write_promise");
     bytesToRead = await bytesToRead;
