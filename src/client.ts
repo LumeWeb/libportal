@@ -105,6 +105,10 @@ export class Client {
   }
 
   async login(): Promise<LoginResponse> {
+    if (!this._options.privateKey) {
+      return this.loginPubkey();
+    }
+
     return this.post<LoginResponse>("/api/v1/auth/login", {
       email: this._options.email,
       password: this._options.password,
@@ -131,7 +135,7 @@ export class Client {
     return json.status as boolean;
   }
 
-  async loginPubkey(): Promise<void> {
+  async loginPubkey(): Promise<LoginResponse> {
     if (!this._options.privateKey) {
       throw new Error("Private key is required");
     }
@@ -158,6 +162,8 @@ export class Client {
     );
 
     this.jwtSessionKey = loginRet.token;
+
+    return { token: loginRet.token };
   }
 
   logout(request: LogoutRequest): Promise<void> {
