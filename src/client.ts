@@ -2,7 +2,6 @@ import { ed25519 as ed } from "@noble/curves/ed25519";
 import * as edUtils from "@noble/curves/abstract/utils";
 
 import { RegisterRequest } from "./requests/account.js";
-import fetch, { Response } from "cross-fetch";
 import {
   LoginRequest,
   LogoutRequest,
@@ -187,6 +186,7 @@ export class Client {
   }
 
   async downloadProof(cid: string): Promise<ArrayBuffer> {
+    const Response = await this.getFetchResponseObject();
     return await new Response(
       await this.get<any>(`/api/v1/files/proof/${cid}`, {
         auth: true,
@@ -226,7 +226,8 @@ export class Client {
       }
     }
 
-    const response = await fetch(this.getEndpoint(path), fetchOptions);
+    const fetch = await this.getFetchObject();
+    const response = await fetch(this.getEndpoint(path), fetchOptions as any);
 
     if (!options.fullResponse) {
       if (!response.ok) {
@@ -543,5 +544,19 @@ export class Client {
     }
 
     return undefined;
+  }
+  private async getFetchObject() {
+    if (isNode) {
+      return (await import("node-fetch")).default;
+    }
+
+    return fetch;
+  }
+  private async getFetchResponseObject() {
+    if (isNode) {
+      return (await import("node-fetch")).Response;
+    }
+
+    return Response;
   }
 }
