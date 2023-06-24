@@ -89,7 +89,7 @@ func start() int {
 	return callbackId
 }
 
-// exit write
+//export exit
 func exit() {
 	exitChan <- true
 }
