@@ -44,11 +44,11 @@ export async function getVerifiableStream(
       });
   };
 
-  await getNextBytes();
   // @ts-ignore
   const wasmId = callExports("start");
   getWasmProperty(wasmId, "set_root")(root);
   getWasmProperty(wasmId, "set_proof")(proof);
+  await getNextBytes();
 
   return new ReadableStream({
     async pull(controller) {
