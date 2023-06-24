@@ -1,6 +1,6 @@
 // @ts-ignore
 import baoWasm from "./wasm/bao.wasm";
-import Go from "#go_wasm.js";
+import Go from "./go_wasm.js";
 
 export async function getVerifiableStream(
   root: Uint8Array,
