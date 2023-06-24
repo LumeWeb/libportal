@@ -82,6 +82,7 @@ export default class Go {
   private exited = false;
   private _resolveCallbackPromise?: () => void;
   importObject: ImportObject;
+  private _pendingEvent?: any;
 
   constructor() {
     this._callbackTimeouts = new Map();
@@ -436,6 +437,16 @@ export default class Go {
       throw new Error("Go program has already exited");
     }
     this._inst.exports.resume();
+  }
+  _makeFuncWrapper(id) {
+    const go = this;
+    return function () {
+      const event = { id: id, this: this, args: arguments };
+      go._pendingEvent = event;
+      go._resume();
+      // @ts-ignore
+      return event.result;
+    };
   }
 }
 
