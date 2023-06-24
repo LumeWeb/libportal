@@ -5,12 +5,12 @@ export default async function (imports) {
 
     // @ts-ignore
     const wasmPath = new URL("wasm/bao.wasm", import.meta.url);
-
     const wasm = await fs.readFile(wasmPath);
-
-    return WebAssembly.instantiate(wasm, imports);
+    return (await WebAssembly.instantiate(wasm, imports)).instance;
   }
 
   // @ts-ignore
-  return await import("./wasm/bao.wasm");
+  let wasm = await import("./wasm/bao.wasm");
+  wasm = wasm.default || wasm;
+  return (await wasm(imports)).instance;
 }
