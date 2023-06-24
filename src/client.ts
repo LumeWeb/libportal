@@ -105,7 +105,7 @@ export class Client {
   }
 
   async login(): Promise<LoginResponse> {
-    if (!this._options.privateKey) {
+    if (this._options.privateKey) {
       return this.loginPubkey();
     }
 
