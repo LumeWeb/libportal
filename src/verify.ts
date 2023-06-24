@@ -83,16 +83,24 @@ export async function getVerifiableStream(
       if (chunk.done || wasmDone) {
         if (wasmDone) {
           if (result) {
+            controller.enqueue(chunk.value);
             done(controller);
           } else {
             controller.error(getWasmProperty(wasmId, "error"));
+            exit();
           }
         } else {
+          if (!wasmDone) {
+            controller.error("stream is ended but verification not complete");
+            exit();
+            return;
+          }
+          controller.enqueue(chunk.value);
           done(controller);
         }
+      } else {
+        controller.enqueue(chunk.value);
       }
-
-      controller.enqueue(chunk.value);
     },
     async cancel(reason: any) {
       await reader.cancel(reason);
