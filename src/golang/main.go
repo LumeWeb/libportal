@@ -13,14 +13,14 @@ var activeReader *reader
 var pipe chan []byte
 var callbackId int
 var nextBytes chan int
-var exitChan chan bool
+var killChan chan bool
 
 func main() {
 	pipe = make(chan []byte)
 	nextBytes = make(chan int)
-	exitChan = make(chan bool)
+	killChan = make(chan bool)
 	callbackId = rand.Int()
-	<-exitChan
+	<-killChan
 }
 
 type reader struct {
@@ -89,9 +89,9 @@ func start() int {
 	return callbackId
 }
 
-//export exit
-func exit() {
-	exitChan <- true
+//export kill
+func kill() {
+	killChan <- true
 }
 
 func createWritePromiseHandler() js.Value {

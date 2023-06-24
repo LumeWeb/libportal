@@ -31,7 +31,7 @@ export async function getVerifiableStream(
 
   // @ts-ignore
   const exit = () => {
-    callExports("exit");
+    callExports("kill");
     cleanup();
   };
 
