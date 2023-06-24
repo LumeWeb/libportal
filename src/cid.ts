@@ -36,7 +36,7 @@ export function encodeCid(hash: any, size: bigint) {
 export function decodeCid(cid: string): CID {
   let bytes = base58btc.decode(cid);
 
-  if (!arrayBufferEqual(bytes.slice(0, 2).buffer, bytes.buffer)) {
+  if (!arrayBufferEqual(bytes.slice(0, 2).buffer, MAGIC_BYTES.buffer)) {
     throw new Error("Invalid cid");
   }
 
