@@ -91,6 +91,8 @@ export async function getVerifiableStream(
           done(controller);
         }
       }
+
+      controller.enqueue(chunk.value);
     },
     async cancel(reason: any) {
       await reader.cancel(reason);
