@@ -16,14 +16,15 @@
         "./package.json": "./package.json"
     },
     "devDependencies": {
+        "@lumeweb/node-library-preset": "https://git.lumeweb.com/LumeWeb/node-library-preset/archive/v0.1.1-develop.13.tar.gz",
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/commit-analyzer": "^10.0.1",
         "@semantic-release/git": "^10.0.1",
         "@semantic-release/npm": "^10.0.4",
         "@semantic-release/release-notes-generator": "^11.0.3",
-        "presetter": "^3.5.5",
-        "presetter-preset-essentials": "^3.5.5",
-        "presetter-preset-hybrid": "^3.5.5",
+        "presetter": "^4.0.1",
+        "presetter-preset-hybrid": "4.0.1",
+        "presetter-preset-strict": "^4.0.1",
         "semantic-release": "^21.0.5"
     },
     "readme": "ERROR: No README data found!",
