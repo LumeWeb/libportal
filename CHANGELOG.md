@@ -1,3 +1,10 @@
+# [0.2.0-develop.11](https://git.lumeweb.com/LumeWeb/libportal/compare/v0.2.0-develop.10...v0.2.0-develop.11) (2023-06-26)
+
+
+### Bug Fixes
+
+* update uploadFile return type ([848f3df](https://git.lumeweb.com/LumeWeb/libportal/commit/848f3dff9d55e6c08779ae3696c6053d406d2f32))
+
 # [0.2.0-develop.10](https://git.lumeweb.com/LumeWeb/libportal/compare/v0.2.0-develop.9...v0.2.0-develop.10) (2023-06-26)
 
 
