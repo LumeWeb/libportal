@@ -16,14 +16,6 @@ jobs:
                 with:
                     node-version: 18.x
                     cache: 'npm'
-            -   run: npm ci
-            -   run: npm run build --if-present
-            -   name: Install SSH key
-                uses: shimataro/ssh-key-action@v2
-                with:
-                    key: ${{ secrets.GITEA_SSH_KEY }}
-                    known_hosts: ${{ secrets.GITEA_KNOWN_HOST }}
-
             -   name: Setup Golang
                 run: |
                     sudo apt-get update;
@@ -43,6 +35,14 @@ jobs:
                     gvm use go1.19 --default;
                     cd src/golang;
                     go get;
+            -   run: npm ci
+            -   run: npm run build --if-present
+            -   name: Install SSH key
+                uses: shimataro/ssh-key-action@v2
+                with:
+                    key: ${{ secrets.GITEA_SSH_KEY }}
+                    known_hosts: ${{ secrets.GITEA_KNOWN_HOST }}
+
             -   name: Publish
                 run: npm run semantic-release
                 env:
