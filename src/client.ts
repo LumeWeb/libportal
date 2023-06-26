@@ -288,7 +288,7 @@ export class Client {
     hashStream: ReadableStream,
     size: bigint,
   ): Promise<string>;
-  async uploadFile(stream: Uint8Array, size?: bigint);
+  async uploadFile(stream: Uint8Array, size?: bigint): Promise<string>;
   async uploadFile(
     stream: NodeJS.ReadableStream,
     hashStream: NodeJS.ReadableStream,
