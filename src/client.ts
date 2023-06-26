@@ -282,18 +282,18 @@ export class Client {
     );
   }
 
-  async uploadFile(stream: Blob, size?: bigint);
+  async uploadFile(stream: Blob, size?: bigint): Promise<string>;
   async uploadFile(
     stream: ReadableStream,
     hashStream: ReadableStream,
     size: bigint,
-  );
+  ): Promise<string>;
   async uploadFile(stream: Uint8Array, size?: bigint);
   async uploadFile(
     stream: NodeJS.ReadableStream,
     hashStream: NodeJS.ReadableStream,
     size?: bigint,
-  );
+  ): Promise<string>;
   async uploadFile(
     stream: any,
     hashStream?: any,
