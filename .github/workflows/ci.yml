@@ -26,7 +26,7 @@ jobs:
                     gvm install go1.19 -B;
                     VERSION=0.28.1;
                     TINYGO="tinygo_${VERSION}_amd64.deb";
-                    wget https://github.com/tinygo-org/tinygo/releases/download/v$VERSION/$TINYGO;
+                    wget -q https://github.com/tinygo-org/tinygo/releases/download/v$VERSION/$TINYGO;
                     sudo dpkg -i $TINYGO && rm $TINYGO;
             -   name: Fetch Wasm Deps
                 run: |
