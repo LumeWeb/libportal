@@ -6,8 +6,49 @@ on:
             - master
             - develop
             - develop-*
-
 jobs:
-    main:
-        uses: lumeweb/github-node-deploy-workflow/.github/workflows/main.yml@master
-        secrets: inherit
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v3
+            -   name: Use Node.js
+                uses: actions/setup-node@v3
+                with:
+                    node-version: 18.x
+                    cache: 'npm'
+            -   run: npm ci
+            -   run: npm run build --if-present
+            -   name: Install SSH key
+                uses: shimataro/ssh-key-action@v2
+                with:
+                    key: ${{ secrets.GITEA_SSH_KEY }}
+                    known_hosts: ${{ secrets.GITEA_KNOWN_HOST }}
+
+            -   name: Setup Golang
+                run: |
+                    sudo apt-get update;
+                    sudo apt-get install bison;
+                    bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer);
+                    source ~/.gvm/scripts/gvm;
+                    gvm install go1.4 -B;
+                    gvm use go1.4 --default;
+                    gvm install go1.19 -B;
+                    VERSION=0.28.1;
+                    TINYGO="tinygo_${VERSION}_amd64.deb";
+                    wget https://github.com/tinygo-org/tinygo/releases/download/v$VERSION/$TINYGO;
+                    sudo dpkg -i $TINYGO && rm $TINYGO;
+            -   name: Fetch Wasm Deps
+                run: |
+                    source ~/.gvm/scripts/gvm;
+                    gvm use go1.19 --default;
+                    cd src/golang;
+                    go get;
+            -   name: Publish
+                run: npm run semantic-release
+                env:
+                    NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+            -   name: Setup tmate session
+                uses: mxschmitt/action-tmate@v3
+                if: ${{ github.event_name == 'workflow_dispatch' && inputs.debug_enabled && failure() }}
+                with:
+                    limit-access-to-actor: true
