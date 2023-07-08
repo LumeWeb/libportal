@@ -10,7 +10,7 @@ export default async function (imports) {
   }
 
   // @ts-ignore
-  let wasm = await import("./wasm/bao.wasm");
+  let wasm = await import("./wasm/bao.wasm?init");
   wasm = wasm.default || wasm;
   return (await wasm(imports)).instance;
 }
