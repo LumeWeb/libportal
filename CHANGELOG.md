@@ -1,3 +1,10 @@
+# [0.2.0-develop.12](https://git.lumeweb.com/LumeWeb/libportal/compare/v0.2.0-develop.11...v0.2.0-develop.12) (2023-07-08)
+
+
+### Bug Fixes
+
+* add ?init query string for vite bundler ([04bd963](https://git.lumeweb.com/LumeWeb/libportal/commit/04bd9636a3fc70f5d23b5e61add7fb3d18604d27))
+
 # [0.2.0-develop.11](https://git.lumeweb.com/LumeWeb/libportal/compare/v0.2.0-develop.10...v0.2.0-develop.11) (2023-06-26)
 
 
