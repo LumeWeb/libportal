@@ -1,3 +1,10 @@
+# [0.2.0-develop.13](https://git.lumeweb.com/LumeWeb/libportal/compare/v0.2.0-develop.12...v0.2.0-develop.13) (2023-07-18)
+
+
+### Bug Fixes
+
+* switch to using utf8ToBytes ([37fd754](https://git.lumeweb.com/LumeWeb/libportal/commit/37fd7543afe5f06e3193e24cb2c3390c848faadb))
+
 # [0.2.0-develop.12](https://git.lumeweb.com/LumeWeb/libportal/compare/v0.2.0-develop.11...v0.2.0-develop.12) (2023-07-08)
 
 
