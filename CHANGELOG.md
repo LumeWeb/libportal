@@ -1,3 +1,10 @@
+# [0.2.0-develop.14](https://git.lumeweb.com/LumeWeb/libportal/compare/v0.2.0-develop.13...v0.2.0-develop.14) (2023-07-18)
+
+
+### Bug Fixes
+
+* async loading quirk in firefox js engine ([ea90488](https://git.lumeweb.com/LumeWeb/libportal/commit/ea9048868a4323da810bf139a083daf3ed5d79f7))
+
 # [0.2.0-develop.13](https://git.lumeweb.com/LumeWeb/libportal/compare/v0.2.0-develop.12...v0.2.0-develop.13) (2023-07-18)
 
 
