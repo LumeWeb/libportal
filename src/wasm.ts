@@ -13,5 +13,5 @@ export default async function (imports) {
   let wasm = await import("./wasm/bao.wasm?init");
   wasm = wasm.default || wasm;
   wasm = await wasm(imports);
-  return wasm.instance;
+  return wasm;
 }
