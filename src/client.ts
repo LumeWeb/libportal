@@ -26,6 +26,7 @@ import {
   PubkeyChallengeResponse,
 } from "./responses/auth.js";
 import isNode from "detect-node";
+import { utf8ToBytes } from "@noble/curves/abstract/utils";
 
 type NodeReadableStreamType = typeof import("stream").Readable;
 
@@ -148,7 +149,7 @@ export class Client {
     );
 
     const signature = ed.sign(
-      new TextEncoder().encode(challenge.challenge),
+      utf8ToBytes(challenge.challenge),
       this._options.privateKey,
     );
 
