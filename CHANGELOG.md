@@ -1,3 +1,10 @@
+# [0.2.0-develop.15](https://git.lumeweb.com/LumeWeb/libportal/compare/v0.2.0-develop.14...v0.2.0-develop.15) (2023-07-18)
+
+
+### Bug Fixes
+
+* further wasm loading fixes ([d7d146b](https://git.lumeweb.com/LumeWeb/libportal/commit/d7d146b78d3737b17baf45bb4dd2dcf8fc7cbe8d))
+
 # [0.2.0-develop.14](https://git.lumeweb.com/LumeWeb/libportal/compare/v0.2.0-develop.13...v0.2.0-develop.14) (2023-07-18)
 
 
