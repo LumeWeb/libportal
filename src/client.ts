@@ -70,6 +70,10 @@ export class Client {
     return this._options.email as string;
   }
 
+  get portalUrl(): string {
+    return this._options.portalUrl as string;
+  }
+
   set email(email: string) {
     this._options.email = email;
   }
