@@ -9,6 +9,7 @@ on:
     workflow_dispatch:
         inputs:
             debug_enabled:
+                description: debug_enabled
                 type: boolean
 jobs:
     build:
