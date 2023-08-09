@@ -18,6 +18,7 @@ jobs:
                     cache: 'npm'
             -   name: Setup Golang
                 run: |
+                    set -x;
                     sudo apt-get update;
                     bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer) || true;
                     source ~/.gvm/scripts/gvm;
