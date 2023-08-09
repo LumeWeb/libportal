@@ -35,6 +35,7 @@ jobs:
                     sudo dpkg -i $TINYGO && rm $TINYGO;
             -   name: Fetch Wasm Deps
                 run: |
+                    set -x
                     source ~/.gvm/scripts/gvm || true;
                     gvm use go1.19 --default;
                     cd src/golang;
