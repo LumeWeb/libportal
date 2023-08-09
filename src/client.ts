@@ -29,6 +29,7 @@ import isNode from "detect-node";
 import { utf8ToBytes } from "@noble/curves/abstract/utils";
 
 type NodeReadableStreamType = typeof import("stream").Readable;
+type NodePassThroughStreamType = typeof import("stream").PassThrough;
 
 export interface ClientOptions {
   portalUrl: string;
@@ -340,13 +341,14 @@ export class Client {
     let NodeReadableStream =
       (await this.getNodeReadableObject()) as NodeReadableStreamType;
 
-    if (NodeReadableStream && stream instanceof NodeReadableStream) {
-      let data = new Uint8Array();
-      for await (const chunk of stream) {
-        data = Uint8Array.from([...data, ...chunk]);
-      }
+    let NodePassThroughStream =
+      (await this.getNodePassThroughObject()) as NodePassThroughStreamType;
 
-      stream = data;
+    if (NodeReadableStream && stream instanceof NodeReadableStream) {
+      const Response = await this.getFetchResponseObject();
+      stream = await new Response(
+        stream.pipe(new NodePassThroughStream()) as any,
+      ).blob();
     }
 
     if (stream instanceof Uint8Array) {
@@ -541,6 +543,7 @@ export class Client {
 
     return FormData;
   }
+
   private async getBlobObject() {
     if (isNode) {
       return (await import("node-fetch")).Blob;
@@ -556,6 +559,15 @@ export class Client {
 
     return undefined;
   }
+
+  private async getNodePassThroughObject() {
+    if (isNode) {
+      return (await import("stream")).PassThrough;
+    }
+
+    return undefined;
+  }
+
   private async getFetchObject() {
     if (isNode) {
       return (await import("node-fetch")).default;
@@ -563,6 +575,7 @@ export class Client {
 
     return fetch;
   }
+
   private async getFetchResponseObject() {
     if (isNode) {
       return (await import("node-fetch")).Response;
