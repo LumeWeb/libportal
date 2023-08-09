@@ -1,3 +1,10 @@
+# [0.2.0-develop.16](https://git.lumeweb.com/LumeWeb/libportal/compare/v0.2.0-develop.15...v0.2.0-develop.16) (2023-07-18)
+
+
+### Features
+
+* add portalUrl getter ([0d0b2d4](https://git.lumeweb.com/LumeWeb/libportal/commit/0d0b2d4799a277c25f39673a10e4351c1991536c))
+
 # [0.2.0-develop.15](https://git.lumeweb.com/LumeWeb/libportal/compare/v0.2.0-develop.14...v0.2.0-develop.15) (2023-07-18)
 
 
