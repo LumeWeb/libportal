@@ -37,6 +37,7 @@ jobs:
                 run: |
                     source ~/.gvm/scripts/gvm || true;
                     gvm use go1.19 --default || true;
+                    set -x;
                     cd src/golang;
                     go get;
             -   run: npm ci
