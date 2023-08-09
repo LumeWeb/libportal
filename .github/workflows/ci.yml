@@ -23,6 +23,7 @@ jobs:
                     cache: 'npm'
             -   name: Setup Golang
                 run: |
+                    set -x;
                     sudo apt-get update && sudo apt-get install bsdmainutils -y;
                     bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer);
                     source ~/.gvm/scripts/gvm;
