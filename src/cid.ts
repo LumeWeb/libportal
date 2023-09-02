@@ -35,7 +35,7 @@ export function encodeCid(
     throw new Error();
   }
 
-  if (!size) {
+  if (size === undefined || size === null) {
     throw new Error("size required");
   }
 
