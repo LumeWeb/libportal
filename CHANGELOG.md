@@ -1,3 +1,10 @@
+# [0.2.0-develop.17](https://git.lumeweb.com/LumeWeb/libportal/compare/v0.2.0-develop.16...v0.2.0-develop.17) (2023-08-10)
+
+
+### Bug Fixes
+
+* refactor how we process a nodejs stream, as the current approach is extremely slow and wasteful. We need to do a bit of macgyvering and convert it via pipe to a passthrough so it passes a typeof check for Stream, then import it to form-data Response, and request a blob ([ae35797](https://git.lumeweb.com/LumeWeb/libportal/commit/ae35797a2525d23ac9a552d076a9904e68a7a142))
+
 # [0.2.0-develop.16](https://git.lumeweb.com/LumeWeb/libportal/compare/v0.2.0-develop.15...v0.2.0-develop.16) (2023-07-18)
 
 
