@@ -1,16 +1,22 @@
 import { base58btc } from "multiformats/bases/base58";
 import * as edUtils from "@noble/curves/abstract/utils";
-
-export const MAGIC_BYTES = new Uint8Array([0x26, 0x1f]);
+import { CID_HASH_TYPES, CID_TYPES } from "@lumeweb/libs5";
 
 export interface CID {
   hash: Uint8Array;
   size: bigint;
+  type: number;
+  hashType: number;
 }
 
 export function encodeCid(hash: Uint8Array, size: bigint);
 export function encodeCid(hash: string, size: bigint);
-export function encodeCid(hash: any, size: bigint) {
+export function encodeCid(
+  hash: any,
+  size: bigint,
+  type = CID_TYPES.RAW,
+  hashType = CID_HASH_TYPES.BLAKE3,
+) {
   if (typeof hash === "string") {
     hash = edUtils.hexToBytes(hash);
   }
@@ -29,16 +35,23 @@ export function encodeCid(hash: any, size: bigint) {
   const sizeView = new DataView(sizeBytes.buffer);
   sizeView.setBigInt64(0, size, true);
 
-  const prefixedHash = Uint8Array.from([...MAGIC_BYTES, ...hash, ...sizeBytes]);
+  const prefixedHash = Uint8Array.from([type, hashType, ...hash, ...sizeBytes]);
   return base58btc.encode(prefixedHash).toString();
 }
 
 export function decodeCid(cid: string): CID {
   let bytes = base58btc.decode(cid);
 
-  if (!arrayBufferEqual(bytes.slice(0, 2).buffer, MAGIC_BYTES.buffer)) {
-    throw new Error("Invalid cid");
+  if (!Object.values(CID_TYPES).includes(bytes[0])) {
+    throw new Error("Invalid cid type");
   }
+
+  if (!Object.values(CID_HASH_TYPES).includes(bytes[1])) {
+    throw new Error("Invalid cid hash type");
+  }
+
+  const type = bytes[0];
+  const hashType = bytes[1];
 
   bytes = bytes.slice(2);
   let cidHash = bytes.slice(0, 32);
@@ -48,27 +61,7 @@ export function decodeCid(cid: string): CID {
   return {
     hash: cidHash,
     size: sizeView.getBigInt64(0, true),
+    type,
+    hashType,
   };
-}
-
-function arrayBufferEqual(buf1, buf2) {
-  if (buf1 === buf2) {
-    return true;
-  }
-
-  if (buf1.byteLength !== buf2.byteLength) {
-    return false;
-  }
-
-  var view1 = new DataView(buf1);
-  var view2 = new DataView(buf2);
-
-  var i = buf1.byteLength;
-  while (i--) {
-    if (view1.getUint8(i) !== view2.getUint8(i)) {
-      return false;
-    }
-  }
-
-  return true;
 }
