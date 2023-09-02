@@ -1,3 +1,10 @@
+# [0.2.0-develop.19](https://git.lumeweb.com/LumeWeb/libportal/compare/v0.2.0-develop.18...v0.2.0-develop.19) (2023-09-02)
+
+
+### Bug Fixes
+
+* fix encodeCid overload typings ([2eb5810](https://git.lumeweb.com/LumeWeb/libportal/commit/2eb5810dec17413ef68f282e9d884bcd867f520d))
+
 # [0.2.0-develop.18](https://git.lumeweb.com/LumeWeb/libportal/compare/v0.2.0-develop.17...v0.2.0-develop.18) (2023-09-02)
 
 # [0.2.0-develop.17](https://git.lumeweb.com/LumeWeb/libportal/compare/v0.2.0-develop.16...v0.2.0-develop.17) (2023-08-10)
