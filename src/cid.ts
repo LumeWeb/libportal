@@ -9,8 +9,18 @@ export interface CID {
   hashType: number;
 }
 
-export function encodeCid(hash: Uint8Array, size: bigint);
-export function encodeCid(hash: string, size: bigint);
+export function encodeCid(
+  hash: Uint8Array,
+  size: bigint,
+  type?: number,
+  hashType?: number,
+);
+export function encodeCid(
+  hash: string,
+  size: bigint,
+  type?: number,
+  hashType?: number,
+);
 export function encodeCid(
   hash: any,
   size: bigint,
