@@ -1,3 +1,10 @@
+# [0.2.0-develop.20](https://git.lumeweb.com/LumeWeb/libportal/compare/v0.2.0-develop.19...v0.2.0-develop.20) (2023-09-02)
+
+
+### Bug Fixes
+
+* check for only undefined or null on the size ([bd10837](https://git.lumeweb.com/LumeWeb/libportal/commit/bd108376ba33bb3c6b5c25606c5ed032e292e911))
+
 # [0.2.0-develop.19](https://git.lumeweb.com/LumeWeb/libportal/compare/v0.2.0-develop.18...v0.2.0-develop.19) (2023-09-02)
 
 
