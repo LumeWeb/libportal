@@ -1,6 +1,6 @@
 {
     "name": "@lumeweb/libportal",
-    "version": "0.2.0-develop.20",
+    "version": "0.2.0-develop.21",
     "main": "lib/index.js",
     "type": "module",
     "repository": {

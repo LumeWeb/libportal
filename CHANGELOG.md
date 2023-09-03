@@ -1,3 +1,10 @@
+# [0.2.0-develop.21](https://git.lumeweb.com/LumeWeb/libportal/compare/v0.2.0-develop.20...v0.2.0-develop.21) (2023-09-03)
+
+
+### Bug Fixes
+
+* use switch to module in package.json ([b6722cf](https://git.lumeweb.com/LumeWeb/libportal/commit/b6722cf98d347095815532b3923eefb42deb2f0a))
+
 # [0.2.0-develop.20](https://git.lumeweb.com/LumeWeb/libportal/compare/v0.2.0-develop.19...v0.2.0-develop.20) (2023-09-02)
 
 
