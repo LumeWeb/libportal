@@ -34,7 +34,7 @@
         "semantic-release": "semantic-release"
     },
     "dependencies": {
-        "@lumeweb/libs5": "^0.1.0-develop.43",
+        "@lumeweb/libs5": "^0.1.0-develop.44",
         "@lumeweb/node-library-preset": "git+https://git.lumeweb.com/LumeWeb/node-library-preset.git",
         "@noble/curves": "^1.1.0",
         "@noble/hashes": "^1.3.1",
