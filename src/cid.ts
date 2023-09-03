@@ -49,9 +49,12 @@ export function encodeCid(
   return base58btc.encode(prefixedHash).toString();
 }
 
-export function decodeCid(cid: string): CID {
-  let bytes = base58btc.decode(cid);
+export function decodeCid(cid: string | Uint8Array): CID {
+  let bytes = cid;
 
+  if (typeof bytes === "string") {
+    bytes = base58btc.decode(bytes);
+  }
   if (!Object.values(CID_TYPES).includes(bytes[0])) {
     throw new Error("Invalid cid type");
   }
