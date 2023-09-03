@@ -2,8 +2,7 @@
     "name": "@lumeweb/libportal",
     "version": "0.2.0-develop.20",
     "main": "lib/index.js",
-    "module": "lib/index.mjs",
-    "types": "lib/index.d.ts",
+    "type": "module",
     "repository": {
         "type": "git",
         "url": "gitea@git.lumeweb.com:LumeWeb/libportal.git"
