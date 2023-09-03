@@ -9,7 +9,6 @@
             "version": "0.2.0-develop.20",
             "dependencies": {
                 "@lumeweb/libs5": "^0.1.0-develop.44",
-                "@lumeweb/node-library-preset": "git+https://git.lumeweb.com/LumeWeb/node-library-preset.git",
                 "@noble/curves": "^1.1.0",
                 "@noble/hashes": "^1.3.1",
                 "detect-node": "^2.1.0",
@@ -21,6 +20,7 @@
                 "web-streams-polyfill": "^3.2.1"
             },
             "devDependencies": {
+                "@lumeweb/node-library-preset": "^0.2.7",
                 "@semantic-release/changelog": "^6.0.3",
                 "@semantic-release/commit-analyzer": "^10.0.1",
                 "@semantic-release/git": "^10.0.1",
@@ -1951,10 +1951,17 @@
             }
         },
         "node_modules/@lumeweb/node-library-preset": {
-            "version": "0.1.0",
-            "resolved": "git+https://git.lumeweb.com/LumeWeb/node-library-preset.git#841e005d7cb3c939bd040823206d48e93ac9119a",
+            "version": "0.2.7",
+            "resolved": "https://registry.npmjs.org/@lumeweb/node-library-preset/-/node-library-preset-0.2.7.tgz",
+            "integrity": "sha512-qBcw12FkM80D/ltvbs6Y5nTozZtoum7RISv8YoNagXh32zz3qZyeROJENXgeHlD4UIygN6C8J96NwGovfZCLHA==",
+            "dev": true,
             "dependencies": {
-                "presetter-types": "^4.0.1"
+                "@semantic-release/changelog": "^6.0.3",
+                "@semantic-release/git": "^10.0.1",
+                "@semantic-release/npm": "^10.0.4",
+                "presetter-preset-hybrid": "^4.0.1",
+                "presetter-preset-strict": "^4.0.1",
+                "semantic-release": "^21.0.5"
             }
         },
         "node_modules/@noble/curves": {
@@ -15685,6 +15692,7 @@
             "version": "4.0.1",
             "resolved": "https://registry.npmjs.org/presetter-types/-/presetter-types-4.0.1.tgz",
             "integrity": "sha512-05P5F/w9n8+LT38WGRQghvHDeydgPd3tuSaBW63jlwPBNszcuCOLncc4Sw4+0jGzMXK98KsaKI/yUgXk5TPu7A==",
+            "dev": true,
             "dependencies": {
                 "type-fest": "^3.12.0"
             }
@@ -15693,6 +15701,7 @@
             "version": "3.12.0",
             "resolved": "https://registry.npmjs.org/type-fest/-/type-fest-3.12.0.tgz",
             "integrity": "sha512-qj9wWsnFvVEMUDbESiilKeXeHL7FwwiFcogfhfyjmvT968RXSvnl23f1JOClTHYItsi7o501C/7qVllscUP3oA==",
+            "dev": true,
             "engines": {
                 "node": ">=14.16"
             },
