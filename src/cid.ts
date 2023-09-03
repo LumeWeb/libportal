@@ -14,18 +14,21 @@ export function encodeCid(
   size: bigint,
   type?: number,
   hashType?: number,
+  raw?: boolean,
 );
 export function encodeCid(
   hash: string,
   size: bigint,
   type?: number,
   hashType?: number,
+  raw?: boolean,
 );
 export function encodeCid(
   hash: any,
   size: bigint,
   type = CID_TYPES.RAW,
   hashType = CID_HASH_TYPES.BLAKE3,
+  raw: boolean = false,
 ) {
   if (typeof hash === "string") {
     hash = edUtils.hexToBytes(hash);
@@ -46,6 +49,11 @@ export function encodeCid(
   sizeView.setBigInt64(0, size, true);
 
   const prefixedHash = Uint8Array.from([type, hashType, ...hash, ...sizeBytes]);
+
+  if (raw) {
+    return prefixedHash;
+  }
+
   return base58btc.encode(prefixedHash).toString();
 }
 
