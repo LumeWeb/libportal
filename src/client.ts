@@ -19,7 +19,6 @@ import streamToBlob from "stream-to-blob";
 
 import defer from "p-defer";
 import { blake3 } from "@noble/hashes/blake3";
-import { encodeCid } from "./cid.js";
 import {
   AuthStatusResponse,
   LoginResponse,
@@ -27,6 +26,7 @@ import {
 } from "./responses/auth.js";
 import isNode from "detect-node";
 import { utf8ToBytes } from "@noble/curves/abstract/utils";
+import { CID, CID_TYPES } from "@lumeweb/libs5";
 
 type NodeReadableStreamType = typeof import("stream").Readable;
 type NodePassThroughStreamType = typeof import("stream").PassThrough;
@@ -469,10 +469,10 @@ export class Client {
 
     await ret.promise;
 
-    const cid = encodeCid(hash, size as bigint);
+    const cid = CID.fromHash(hash, Number(size));
 
     while (true) {
-      const status = await this.getUploadStatus(cid as string);
+      const status = await this.getUploadStatus(cid.toString());
 
       if (status.status === "uploaded") {
         break;
@@ -483,7 +483,7 @@ export class Client {
       });
     }
 
-    return cid as string;
+    return cid.toString();
   }
 
   async getUploadStatus(cid: string) {
