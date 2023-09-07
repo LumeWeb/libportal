@@ -288,23 +288,19 @@ export class Client {
     );
   }
 
-  async uploadFile(stream: Blob, size?: bigint): Promise<string>;
+  async uploadFile(stream: Blob, size?: bigint): Promise<CID>;
   async uploadFile(
     stream: ReadableStream,
     hashStream: ReadableStream,
     size: bigint,
-  ): Promise<string>;
-  async uploadFile(stream: Uint8Array, size?: bigint): Promise<string>;
+  ): Promise<CID>;
+  async uploadFile(stream: Uint8Array, size?: bigint): Promise<CID>;
   async uploadFile(
     stream: NodeJS.ReadableStream,
     hashStream: NodeJS.ReadableStream,
     size?: bigint,
-  ): Promise<string>;
-  async uploadFile(
-    stream: any,
-    hashStream?: any,
-    size?: bigint,
-  ): Promise<string> {
+  ): Promise<CID>;
+  async uploadFile(stream: any, hashStream?: any, size?: bigint): Promise<CID> {
     const Blob = await this.getBlobObject();
 
     if (stream instanceof Uint8Array || stream instanceof Blob) {
@@ -324,14 +320,14 @@ export class Client {
     return this.uploadFileTus(stream, hashStream, size);
   }
 
-  private async uploadFileSmall(stream: Blob): Promise<string>;
+  private async uploadFileSmall(stream: Blob): Promise<CID>;
   private async uploadFileSmall(
     stream: ReadableStream,
     hashStream: ReadableStream,
-  ): Promise<string>;
-  private async uploadFileSmall(stream: Uint8Array): Promise<string>;
-  private async uploadFileSmall(stream: NodeJS.ReadableStream): Promise<string>;
-  private async uploadFileSmall(stream: any): Promise<string> {
+  ): Promise<CID>;
+  private async uploadFileSmall(stream: Uint8Array): Promise<CID>;
+  private async uploadFileSmall(stream: NodeJS.ReadableStream): Promise<CID>;
+  private async uploadFileSmall(stream: any): Promise<CID> {
     const Blob = await this.getBlobObject();
 
     if (stream instanceof ReadableStream) {
@@ -373,29 +369,26 @@ export class Client {
       { auth: true },
     );
 
-    return response.cid;
+    return CID.decode(response.cid);
   }
 
-  private async uploadFileTus(stream: Blob, size?: bigint): Promise<string>;
+  private async uploadFileTus(stream: Blob, size?: bigint): Promise<CID>;
   private async uploadFileTus(
     stream: ReadableStream,
     hashStream: ReadableStream,
     size?: bigint,
-  ): Promise<string>;
-  private async uploadFileTus(
-    stream: Uint8Array,
-    size?: bigint,
-  ): Promise<string>;
+  ): Promise<CID>;
+  private async uploadFileTus(stream: Uint8Array, size?: bigint): Promise<CID>;
   private async uploadFileTus(
     stream: NodeJS.ReadableStream,
     hashStream: ReadableStream,
     size?: bigint,
-  ): Promise<string>;
+  ): Promise<CID>;
   private async uploadFileTus(
     stream: any,
     hashStream?: any,
     size?: bigint,
-  ): Promise<string> {
+  ): Promise<CID> {
     if (["bigint", "number"].includes(typeof hashStream)) {
       size = BigInt(hashStream);
       hashStream = undefined;
@@ -483,7 +476,7 @@ export class Client {
       });
     }
 
-    return cid.toString();
+    return cid;
   }
 
   async getUploadStatus(cid: string) {
