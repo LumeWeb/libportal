@@ -8,7 +8,7 @@
             "name": "@lumeweb/libportal",
             "version": "0.2.0-develop.31",
             "dependencies": {
-                "@lumeweb/libs5": "^0.1.0-develop.53",
+                "@lumeweb/libs5": "^0.1.0-develop.54",
                 "@noble/curves": "^1.1.0",
                 "@noble/hashes": "^1.3.1",
                 "detect-node": "^2.1.0",
@@ -1928,9 +1928,9 @@
             "peer": true
         },
         "node_modules/@lumeweb/libs5": {
-            "version": "0.1.0-develop.53",
-            "resolved": "https://registry.npmjs.org/@lumeweb/libs5/-/libs5-0.1.0-develop.53.tgz",
-            "integrity": "sha512-KjPEsVAbFhXNwaq50pd0Q/96DfhauSo/Hy0iQqxFJAR6tNl6AoS7zjPoSeo/e0fbYinnT+Y04cl9y+JMZjMkQA==",
+            "version": "0.1.0-develop.54",
+            "resolved": "https://registry.npmjs.org/@lumeweb/libs5/-/libs5-0.1.0-develop.54.tgz",
+            "integrity": "sha512-RG1z3cJ9F4a5Gp3OH2xFEfJlBB3ejKMtMQSpVqgsE4mKmmxW7q3ir6uJJXgNTZwO/7pxyvFkNSkbM2+Ec5WlCQ==",
             "dependencies": {
                 "@noble/curves": "^1.1.0",
                 "@noble/hashes": "^1.3.1",
