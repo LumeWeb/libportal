@@ -1,12 +1,12 @@
 {
     "name": "@lumeweb/libportal",
-    "version": "0.2.0-develop.34",
+    "version": "0.2.0-develop.35",
     "lockfileVersion": 3,
     "requires": true,
     "packages": {
         "": {
             "name": "@lumeweb/libportal",
-            "version": "0.2.0-develop.34",
+            "version": "0.2.0-develop.35",
             "dependencies": {
                 "@lumeweb/libs5": "^0.1.0-develop.57",
                 "@noble/curves": "^1.1.0",
