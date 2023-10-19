@@ -1,3 +1,10 @@
+# [0.2.0-develop.40](https://git.lumeweb.com/LumeWeb/libportal/compare/v0.2.0-develop.39...v0.2.0-develop.40) (2023-10-19)
+
+
+### Features
+
+* add getter for jwtSessionKey ([9954616](https://git.lumeweb.com/LumeWeb/libportal/commit/9954616f5a80b6f04e7b14aa67cf106733e9d75c))
+
 # [0.2.0-develop.39](https://git.lumeweb.com/LumeWeb/libportal/compare/v0.2.0-develop.38...v0.2.0-develop.39) (2023-09-20)
 
 # [0.2.0-develop.38](https://git.lumeweb.com/LumeWeb/libportal/compare/v0.2.0-develop.37...v0.2.0-develop.38) (2023-09-11)
