@@ -83,6 +83,10 @@ export class Client {
     return this._options.password as string;
   }
 
+  get jwt(): string | undefined {
+    return this.jwtSessionKey;
+  }
+
   set password(password: string) {
     this._options.email = password;
   }
